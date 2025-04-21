@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Welcome | TPO Portal{% endblock %}
+
+{% block content %}
+<div class="landing-box">
+
+    <h1>Welcome to Training & Placement Portal</h1>
+    <p>This platform enables students to manage their placement profiles and helps TPOs streamline recruitment.</p>
+
+    <div class="actions">
+        <a href="{{ url_for('login') }}" class="btn primary">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn">Signup</a>
+    </div>
+</div>
+{% endblock %}

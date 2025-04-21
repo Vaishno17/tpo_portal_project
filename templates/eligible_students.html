@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="text-align: center; margin: 40px 0; font-weight: bold; color: #1a3e8c;">📋 Eligible Students per Company</h2>
+
+<div style="max-width: 900px; margin: 0 auto;">
+  {% for company, students in eligible_data %}
+    <div style="background: #f8f9fa; padding: 20px 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 30px;">
+      <h3 style="color: #343a40; font-weight: 600;">🏢 {{ company.name }}</h3>
+      <p style="margin: 5px 0 15px; color: #555;">📅 Visit Date: <strong>{{ company.visit_date }}</strong></p>
+
+      <ul style="list-style: none; padding: 0;">
+        {% for student in students %}
+          <li style="padding: 10px; border-bottom: 1px solid #ddd;">
+            👤 <strong>{{ student.name }}</strong> |
+            🎓 CGPA: <strong>{{ student.cgpa }}</strong> |
+            📚 Backlog: <strong>{{ student.backlog }}</strong>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

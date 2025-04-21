@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div style="
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+">
+    <h2 style="
+        color: #1a3e8c;
+        text-align: center;
+        margin-bottom: 25px;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+    ">Create Your Account</h2>
+    
+    <form method="POST" style="margin-bottom: 20px;">
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 500;
+                color: #555;
+            ">Role:</label>
+            <select name="role" required style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #333;
+                background-color: white;
+                box-sizing: border-box;
+            ">
+                <option value="" disabled selected>Select your role</option>
+                <option value="student">Student</option>
+                <option value="tpo">TPO</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 500;
+                color: #555;
+            ">Username:</label>
+            <input type="text" name="username" required style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            ">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 500;
+                color: #555;
+            ">Password:</label>
+            <input type="password" name="password" required style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            ">
+        </div>
+
+        <button type="submit" style="
+            width: 100%;
+            padding: 12px;
+            background-color: #1a3e8c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        ">Sign Up</button>
+    </form>
+    
+    <p style="
+        text-align: center;
+        font-size: 14px;
+        color: #555;
+        margin-top: 15px;
+    ">
+        Already have an account? <a href="{{ url_for('login') }}" style="color: #1a3e8c; text-decoration: none;">Login here</a>
+    </p>
+</div>
+{% endblock %}

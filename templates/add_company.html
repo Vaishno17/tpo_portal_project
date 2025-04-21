@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Add Company{% endblock %}
+{% block content %}
+<h2 style="text-align: center; margin-top: 30px; color: #1a3e8c; font-weight: 600;">➕ Add Upcoming Companies</h2>
+
+<form action="#" method="POST" style="max-width: 600px; margin: 30px auto; padding: 30px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+    
+    <div style="margin-bottom: 20px;">
+        <label for="name" style="display: block; margin-bottom: 8px; font-weight: 500;">Company Name:</label>
+        <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="min_cgpa" style="display: block; margin-bottom: 8px; font-weight: 500;">Min CGPA:</label>
+        <input type="number" id="min_cgpa" name="min_cgpa" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="backlog_allowed" style="display: block; margin-bottom: 8px; font-weight: 500;">Backlog Allowed:</label>
+        <input type="text" id="backlog_allowed" name="backlog_allowed" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="gender" style="display: block; margin-bottom: 8px; font-weight: 500;">Gender:</label>
+        <input type="text" id="gender" name="gender" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="description" style="display: block; margin-bottom: 8px; font-weight: 500;">Description:</label>
+        <textarea id="description" name="description" required rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="visit_date" style="display: block; margin-bottom: 8px; font-weight: 500;">Visit Date:</label>
+        <input type="date" id="visit_date" name="visit_date" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+    </div>
+
+    <button type="submit" style="width: 100%; padding: 12px; background: #1a3e8c; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer;">
+        Submit
+    </button>
+</form>
+{% endblock %}

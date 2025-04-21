@@ -1,0 +1,131 @@
+<div style="
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 35px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+">
+
+    <h2 style="
+        color: #204ecf;
+        border-bottom: 3px solid #204ecf;
+        padding-bottom: 12px;
+        margin-bottom: 30px;
+        font-size: 28px;
+    ">🎓 Student Profile</h2>
+
+    <form method="POST" style="margin-bottom: 40px;">
+        <!-- Use consistent card layout -->
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        ">
+            <div>
+                <label style="...">Name:</label>
+                <input style="...">
+                <!-- (Repeat for each input — already styled well) -->
+            </div>
+        </div>
+
+        <!-- Action button -->
+        <button type="submit" style="
+            background-color: #204ecf;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        ">💾 Save Profile</button>
+    </form>
+
+    {% if student %}
+        <hr style="border-top: 1px solid #ddd; margin: 35px 0;">
+
+        <!-- Summary and Notifications -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+            <div>
+                <h3 style="...">📌 Summary</h3>
+                <div style="background: #eef2ff; padding: 15px; border-radius: 6px;">
+                    <p><strong>CGPA:</strong> {{ student.cgpa }}</p>
+                    <p><strong>Converted Percentage:</strong> {{ student.percentage }}%</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="...">📬 Eligible Companies</h3>
+                <div style="...">
+                    {% for company in eligible_companies %}
+                        <div style="
+                            padding: 12px;
+                            margin-bottom: 12px;
+                            background: #fff;
+                            border-left: 5px solid #28a745;
+                            border-radius: 6px;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+                        ">
+                            <p><strong>{{ company.name }}</strong> – Visit: {{ company.visit_date }}</p>
+                            <form ...>
+                                <button type="submit" style="
+                                    background-color: #28a745;
+                                    color: #fff;
+                                    padding: 6px 16px;
+                                    border: none;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    cursor: pointer;
+                                    font-weight: 500;
+                                ">Apply Now</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <p style="color: #888;">No eligible companies at the moment.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming + Applied + All Companies follow same improvement style: card-like blocks with icons, color cues, and box shadows -->
+
+        <h3 style="margin-top: 40px;">🏢 All Companies</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+            {% for company in all_companies %}
+                <div style="
+                    padding: 15px;
+                    border-radius: 8px;
+                    background: #fff;
+                    border-left: 5px solid 
+                        {% if company in eligible_companies %}#28a745
+                        {% elif company in applied_companies %}#17a2b8
+                        {% else %}#ccc{% endif %};
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+                ">
+                    <h4 style="color: #204ecf;">{{ company.name }}</h4>
+                    <p><strong>Visit Date:</strong> {{ company.visit_date }}</p>
+                    <p><strong>Min CGPA:</strong> {{ company.min_cgpa }}</p>
+                    <p><strong>Backlog Allowed:</strong> {{ company.backlog_allowed }}</p>
+                    <p><strong>Gender:</strong> {{ company.gender }}</p>
+                    <p style="font-style: italic; color: #555;">{{ company.description }}</p>
+
+                    {% if company in applied_companies %}
+                        <button disabled style="...">Already Applied</button>
+                    {% elif company in eligible_companies %}
+                        <form method="POST" ...>
+                            <button type="submit" style="...">Apply Now</button>
+                        </form>
+                    {% else %}
+                        <button disabled style="...">Not Eligible</button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

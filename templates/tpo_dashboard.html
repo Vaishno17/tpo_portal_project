@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+{% block title %}TPO Dashboard{% endblock %}
+
+{% block content %}
+<div style="
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+">
+    <h2 style="
+        color: #1a3e8c;
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #1a3e8c;
+        font-family: Arial, sans-serif;
+    ">📊 TPO Dashboard</h2>
+
+    <!-- Quick Links Section -->
+    <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+    ">
+        <a href="{{ url_for('view_criteria') }}" style="
+            display: block;
+            padding: 15px;
+            background-color: #1a3e8c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        ">🏢 Company Criteria</a>
+        
+        <a href="{{ url_for('eligible_students') }}" style="
+            display: block;
+            padding: 15px;
+            background-color: #1a3e8c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        ">🎓 Eligible Students</a>
+        
+        <a href="{{ url_for('students_placed') }}" style="
+            display: block;
+            padding: 15px;
+            background-color: #1a3e8c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        ">📈 Students Placed</a>
+        
+        <a href="{{ url_for('masters_students') }}" style="
+            display: block;
+            padding: 15px;
+            background-color: #1a3e8c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        ">🎓 Masters Students</a>
+        
+        <a href="{{ url_for('add_company') }}" style="
+            display: block;
+            padding: 15px;
+            background-color: #1a3e8c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        ">➕ Add Company</a>
+    </div>
+
+    <!-- Filter Section -->
+    <form method="GET" action="{{ url_for('tpo_dashboard') }}" style="
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    ">
+        <h3 style="
+            color: #1a3e8c;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+        ">🎯 Filter Students</h3>
+        
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        ">
+            <div>
+                <label style="
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 500;
+                    color: #555;
+                ">Min CGPA:</label>
+                <input type="number" step="0.01" name="cgpa_min" value="{{ request.args.get('cgpa_min', '') }}" style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                ">
+            </div>
+            
+            <div>
+                <label style="
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 500;
+                    color: #555;
+                ">Max CGPA:</label>
+                <input type="number" step="0.01" name="cgpa_max" value="{{ request.args.get('cgpa_max', '') }}" style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                ">
+            </div>
+            
+            <div>
+                <label style="
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 500;
+                    color: #555;
+                ">Backlog:</label>
+                <select name="backlog" style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                ">
+                    <option value="">All</option>
+                    <option value="No" {% if request.args.get('backlog') == 'No' %}selected{% endif %}>No</option>
+                    <option value="Yes" {% if request.args.get('backlog') == 'Yes' %}selected{% endif %}>Yes</option>
+                </select>
+            </div>
+            
+            <div>
+                <label style="
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 500;
+                    color: #555;
+                ">Gender:</label>
+                <select name="gender" style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                ">
+                    <option value="">All</option>
+                    <option value="Male" {% if request.args.get('gender') == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if request.args.get('gender') == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if request.args.get('gender') == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            
+            <div>
+                <label style="
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 500;
+                    color: #555;
+                ">Year Drop:</label>
+                <select name="year_drop" style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                ">
+                    <option value="">All</option>
+                    <option value="No" {% if request.args.get('year_drop') == 'No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+        </div>
+        
+        <button type="submit" style="
+            padding: 10px 20px;
+            background-color: #1a3e8c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        ">Apply Filters</button>
+    </form>
+
+    <!-- Export Button -->
+    <form method="GET" action="{{ url_for('export_excel') }}" style="margin-bottom: 30px;">
+        <input type="hidden" name="cgpa_min" value="{{ request.args.get('cgpa_min', '') }}">
+        <input type="hidden" name="cgpa_max" value="{{ request.args.get('cgpa_max', '') }}">
+        <input type="hidden" name="backlog" value="{{ request.args.get('backlog', '') }}">
+        <input type="hidden" name="gender" value="{{ request.args.get('gender', '') }}">
+        <input type="hidden" name="year_drop" value="{{ request.args.get('year_drop', '') }}">
+        <button type="submit" style="
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        ">📥 Download Filtered Excel</button>
+    </form>
+
+    <!-- Students Table -->
+    <div style="overflow-x: auto;">
+        <table style="
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        ">
+            <thead style="
+                background-color: #1a3e8c;
+                color: white;
+            ">
+                <tr>
+                    <th style="padding: 12px; text-align: left;">Name</th>
+                    <th style="padding: 12px; text-align: left;">DOB</th>
+                    <th style="padding: 12px; text-align: left;">Gender</th>
+                    <th style="padding: 12px; text-align: left;">10th</th>
+                    <th style="padding: 12px; text-align: left;">12th</th>
+                    <th style="padding: 12px; text-align: left;">CGPA</th>
+                    <th style="padding: 12px; text-align: left;">Percentage</th>
+                    <th style="padding: 12px; text-align: left;">Backlog</th>
+                    <th style="padding: 12px; text-align: left;">Year Drop</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr style="
+                    border-bottom: 1px solid #ddd;
+                ">
+                    <td style="padding: 10px;">{{ s.name }}</td>
+                    <td style="padding: 10px;">{{ s.dob }}</td>
+                    <td style="padding: 10px;">{{ s.gender }}</td>
+                    <td style="padding: 10px;">{{ s.marks_10 }}</td>
+                    <td style="padding: 10px;">{{ s.marks_12 }}</td>
+                    <td style="padding: 10px;">{{ s.cgpa }}</td>
+                    <td style="padding: 10px;">{{ s.percentage }}%</td>
+                    <td style="padding: 10px;">{{ s.backlog }}</td>
+                    <td style="padding: 10px;">{{ s.year_drop }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="9" style="
+                        padding: 20px;
+                        text-align: center;
+                        color: #6c757d;
+                    ">No students found with selected criteria.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
