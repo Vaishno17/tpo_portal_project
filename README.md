@@ -1,11 +1,11 @@
 
-# 📚 TPO Portal — Placement Management System
+#  TPO Portal — Placement Management System
 
 A web-based Training and Placement Portal built with **Flask** and **SQLite**, designed for students and TPOs to manage placement activities such as company listings, student profiles, applications, and eligibility tracking.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Python** with Flask
 - **SQLite** (via SQLAlchemy)
@@ -15,16 +15,16 @@ A web-based Training and Placement Portal built with **Flask** and **SQLite**, d
 
 ---
 
-## 🔧 Features
+## Features
 
-### 👨‍🎓 Student
+###  Student
 - Signup/Login as a student
 - Create/update personal and academic profile
 - View list of eligible companies
 - Apply to companies (1-click apply)
 - Track applied companies
 
-### 🧑‍💼 TPO/Admin
+###  TPO/Admin
 - Signup/Login as TPO
 - View all student profiles (with filters)
 - View eligible students per company
@@ -34,7 +34,7 @@ A web-based Training and Placement Portal built with **Flask** and **SQLite**, d
 
 ---
 
-## 🗂 Project Structure
+##  Project Structure
 
 ```
 ├── app.py                 # Main Flask application
@@ -47,7 +47,7 @@ A web-based Training and Placement Portal built with **Flask** and **SQLite**, d
 
 ---
 
-## 💾 Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone the repo
 
@@ -80,7 +80,7 @@ App will be live at `http://127.0.0.1:5000`
 
 ---
 
-## 📤 Export Feature (TPO Only)
+##  Export Feature (TPO Only)
 
 - Filters (CGPA range, backlog)
 - Export student list to Excel (`.xlsx`)
@@ -88,13 +88,13 @@ App will be live at `http://127.0.0.1:5000`
 
 ---
 
-## 🛠 Troubleshooting
+##  Troubleshooting
 
 ### Error: `no such column: student_profile.is_placed`
 
 > You likely added a new field in the model.
 
-✅ Fix:
+ Fix:
 ```bash
 flask db migrate -m "Added is_placed column"
 flask db upgrade
@@ -102,14 +102,14 @@ flask db upgrade
 
 ---
 
-## 🔐 Security
+##  Security
 
 - Passwords stored securely (hashed using Werkzeug)
 - Role-based access control (`student` or `tpo`)
 
 ---
 
-## 📦 requirements.txt
+##  requirements.txt
 
 ```
 Flask==2.2.5
@@ -125,7 +125,7 @@ XlsxWriter==3.1.9
 
 
 
-## 🧠 Future Improvements
+##  Future Improvements
 
 - Company login & result upload
 - Resume uploads
@@ -134,7 +134,7 @@ XlsxWriter==3.1.9
 
 ---
 
-## 👏 Contributing
+##  Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss. 
 contact at vaishno1702@gmail.com
